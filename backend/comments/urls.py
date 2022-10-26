@@ -3,5 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.comments_list)
+    path('', views.get_all_comments),
+    path('all/', views.user_comments),
 ]
