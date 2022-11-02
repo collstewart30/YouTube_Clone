@@ -4,11 +4,16 @@
 // that term depending on if that term mathces any of the song's properties
 
 import { useState } from "react";
+import useCustomForm from "../../hooks/useCustomForm";
 
 
 const SearchBar = (props) => {
     
     const [search, setSearch] = useState('');
+    const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
+        defaultValues,
+        setSearch
+      );
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -19,8 +24,18 @@ const SearchBar = (props) => {
     
     return ( 
         <form onSubmit={handleSubmit}>
-            <input type='text' className='form-control' onChange={(event) => setSearch(event.target.value)}/>
-            <button type='submit' className='btn btn-primary' style={{'marginTop':'1em'}}>Search Video</button>
+            <input 
+                type='text' 
+                className='form-control' 
+                value={formData}
+                onChange={handleInputChange}/>
+            <Link to="/video"></Link>
+            <button 
+                type='submit' 
+                className='btn btn-primary' 
+                style={{'marginTop':'1em'}}>
+                    Search Video
+                </button>
         </form>
      );
 }

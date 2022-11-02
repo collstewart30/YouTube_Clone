@@ -2,6 +2,10 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
+import SearchResultsPage from "../SearchResultsPage/SearchResultsPage";
+import { Routes, Route } from "react-router-dom";
+import VideoPage from "../VideoPage/VideoPage";
+import { DATA } from "../../localData";
 
 import axios from "axios";
 import { KEY } from "../../localKey";
@@ -23,9 +27,9 @@ const HomePage = () => {
 
  const getSearchResults = async (searchTerm="philadelphia eagles") => {
       try {
-        let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=AIzaSyBx7ojL5zulJPz3ZlU03J8I48_br30nUJU&part=snippet&type=video&maxResults=5`, );
+        let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${KEY}&part=snippet&type=video&maxResults=5`, );
         setVideoData(response.data.items);
-        console.log("Ran Search Request from homepage")
+        console.log("YouTube API request ran")
         console.log(response.data.items)
       } catch (error) {
         console.log(error.response.data);
@@ -36,19 +40,29 @@ const HomePage = () => {
 
   return (
     <div className="container">
+      <div>
+      <Routes>
+        <Route path="/search" element={<SearchResultsPage />} /> 
+        <Route path="/video" element={<VideoPage />} />
+      </Routes>
+      </div>
       <h1>Home Page for {user.username}!</h1>
       {/* <Link to="/addcomment">Add Comment</Link> will want to link to video page from thumbnail */} 
       {videoData &&
         videoData.map((video) => (
           <p key={video.id.videoId}>
-            <iframe id="ytplayer" type="text/html" width="640" height="360" 
+            <li><img id="ytplayer" type="text/html" width="640" height="360" 
               src={video.snippet.thumbnails.high.url}
-              frameborder="0"></iframe>
-            {video.snippet.title} {video.snippet.description}
+              frameborder="0"/>   
+            </li>         
+            <li>{video.snippet.title}</li>
+            <li>{video.snippet.description}</li>
           </p>
         ))}
-    </div>
+  </div>
   );
 };
 
 export default HomePage;
+
+// {videoData &&  videoData.map   VIDEO: Conserving API Requests - && is like an if statement, if videoData has a value, run map, otherwise display nothing
