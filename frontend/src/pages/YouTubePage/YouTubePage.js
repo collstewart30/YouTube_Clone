@@ -1,6 +1,5 @@
 // General Imports
 import { Routes, Route } from "react-router-dom";
-import "./App.css";
 
 // Pages Imports
 import HomePage from "./pages/HomePage/HomePage";
@@ -18,7 +17,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 
 import {KEY} from "./localKey";
 
-function App() {
+function YouTubePage() {
   return (
     <div>
       <Navbar />
