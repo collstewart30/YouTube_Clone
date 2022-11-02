@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import SearchResultsPage from "../SearchResultsPage/SearchResultsPage";
 import { Routes, Route } from "react-router-dom";
 import VideoPage from "../VideoPage/VideoPage";
+
 import { DATA } from "../../localData";
 
 import axios from "axios";
@@ -43,7 +44,7 @@ const HomePage = () => {
       <div>
       <Routes>
         <Route path="/search" element={<SearchResultsPage />} /> 
-        <Route path="/video/:videoId" element={<VideoPage />} />
+
       </Routes>
       </div>
       <h1>Home Page for {user.username}!</h1>
