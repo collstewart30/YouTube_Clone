@@ -43,21 +43,23 @@ const HomePage = () => {
       <div>
       <Routes>
         <Route path="/search" element={<SearchResultsPage />} /> 
-        <Route path="/video" element={<VideoPage />} />
+        <Route path="/video/:videoId" element={<VideoPage />} />
       </Routes>
       </div>
       <h1>Home Page for {user.username}!</h1>
       {/* <Link to="/addcomment">Add Comment</Link> will want to link to video page from thumbnail */} 
       {videoData &&
         videoData.map((video) => (
-          <p key={video.id.videoId}>
+          <li key={video.id.videoId}>
+            <Link to={`/video/${video.id.videoId}`} >
             <li><img id="ytplayer" type="text/html" width="640" height="360" 
               src={video.snippet.thumbnails.high.url}
               frameborder="0"/>   
             </li>         
             <li>{video.snippet.title}</li>
             <li>{video.snippet.description}</li>
-          </p>
+          </Link>
+          </li>
         ))}
   </div>
   );
