@@ -26,30 +26,32 @@ function App() {
   return (
     <div>
       <Navbar />
-      <div>
-        <h2>Search Videos </h2>
-        {/* <SearchBar searchBarParent={searchBar}/> */}
-      </div>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <PrivateRoute>
-              <HomePage />
-            </PrivateRoute>
-          }
-        />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/video/:videoId" element={<VideoPage />} />
-        <Route 
-          path="/addcomment" 
-          element={
-            <PrivateRoute>
-              <AddCommentPage />
-            </PrivateRoute>} 
+      <div className="container">
+          <div>
+            <h2>Search Videos </h2>
+            {/* <SearchBar searchBarParent={searchBar}/> */}
+          </div>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <PrivateRoute>
+                  <HomePage />
+                </PrivateRoute>
+              }
             />
-      </Routes>
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/video/:videoId" element={<VideoPage />} />
+            <Route 
+              path="/addcomment" 
+              element={
+                <PrivateRoute>
+                  <AddCommentPage />
+                </PrivateRoute>} 
+                />
+          </Routes>
+        </div>
       <Footer />
     </div>
   );
