@@ -6,6 +6,8 @@ import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import AddCommentPage from "./pages/AddCommentPage/AddCommentPage";
+import SearchResultsPage from "./pages/SearchResultsPage/SearchResultsPage"
+import VideoPage from "./pages/VideoPage/VideoPage"
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -20,29 +22,12 @@ import {KEY} from "./localKey";
 function YouTubePage() {
   return (
     <div>
-      <Navbar />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <PrivateRoute>
-              <HomePage />
-            </PrivateRoute>
-          }
-        />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route 
-          path="/addcomment" 
-          element={
-            <PrivateRoute>
-              <AddCommentPage />
-            </PrivateRoute>} 
-            />
+        <Route path="/search" element={<SearchResultsPage />} /> 
+        <Route path="/video" element={<VideoPage />} />
       </Routes>
-      <Footer />
     </div>
   );
 }
 
-export default App;
+export default YouTubePage;

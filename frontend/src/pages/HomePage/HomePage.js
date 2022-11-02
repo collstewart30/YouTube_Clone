@@ -33,12 +33,12 @@ const HomePage = () => {
     <div className="container">
       <h1>Home Page for {user.username}!</h1>
       <Link to="/addcomment">Add Comment</Link>
-      {comments &&
+      {/* {comments &&
         comments.map((comment) => (
           <p key={car.id}>
             {car.year} {car.model} {car.make}
           </p>
-        ))}
+        ))} */}
     </div>
   );
 };
