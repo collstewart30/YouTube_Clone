@@ -5,31 +5,46 @@
 
 import { useState } from "react";
 import useCustomForm from "../../hooks/useCustomForm";
+import { Link } from "react-router-dom";
+import { KEY } from "../../localKey";
+import axios from "axios";
 
 
 const SearchBar = (props) => {
     
-    const [search, setSearch] = useState('');
+    const defaultValues = { };
+
+    // const [search, setSearch] = useState('');
     const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
         defaultValues,
-        setSearch
+        onclick
       );
 
-    function handleSubmit(event) {
-        event.preventDefault();
+    function onclick() {
         console.log('search bar console log');
-        props.searchBarParent(search);
-        // value should be passed to a function on the app component that filters the songs by the term depending on if that term matches any of the song's properties
+        getSearchBarResults(formData)
     }
+
+
+    const getSearchBarResults = async (searchTerm="philadelphia eagles") => {
+        try {
+          let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${formData}&type=video&key=${KEY}`, );
+          console.log("YouTube related videos search API request ran")
+          console.log(response.data.items)
+        } catch (error) {
+          console.log(error.response.data);
+        }
+      };
     
     return ( 
         <form onSubmit={handleSubmit}>
             <input 
                 type='text' 
-                className='form-control' 
+                // className='form-control' 
+                name="search"
                 value={formData}
                 onChange={handleInputChange}/>
-            <Link to="/video"></Link>
+            <Link to="/search"></Link>
             <button 
                 type='submit' 
                 className='btn btn-primary' 

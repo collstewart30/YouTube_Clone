@@ -4,10 +4,6 @@ import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
 import SearchResultsPage from "../SearchResultsPage/SearchResultsPage";
 import { Routes, Route } from "react-router-dom";
-import VideoPage from "../VideoPage/VideoPage";
-
-import { DATA } from "../../localData";
-
 import axios from "axios";
 import { KEY } from "../../localKey";
 
@@ -23,8 +19,7 @@ const HomePage = () => {
   useEffect(() => {
     getSearchResults();
   }, [token]);
-
-  
+ 
 
  const getSearchResults = async (searchTerm="philadelphia eagles") => {
       try {
@@ -37,16 +32,8 @@ const HomePage = () => {
       }
     };
 
-
-
   return (
     <div className="container">
-      <div>
-      <Routes>
-        <Route path="/search" element={<SearchResultsPage />} /> 
-
-      </Routes>
-      </div>
       <h1>Home Page for {user.username}!</h1>
       {/* <Link to="/addcomment">Add Comment</Link> will want to link to video page from thumbnail */} 
       {videoData &&

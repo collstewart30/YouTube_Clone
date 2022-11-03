@@ -6,6 +6,7 @@ import React from 'react';
 
 
 const SearchResultsPage = (props) => {
+
     return(
         <table className='table'>
             <thead>

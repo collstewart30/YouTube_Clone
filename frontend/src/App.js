@@ -8,16 +8,16 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import AddCommentPage from "./pages/AddCommentPage/AddCommentPage";
 import VideoPage from "./pages/VideoPage/VideoPage";
+import SearchResultsPage from "./pages/SearchResultsPage/SearchResultsPage";
 
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
+import SearchBar from "./components/SearchBar/SearchBar";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
-
-import {KEY} from "./localKey";
 
 
 
@@ -29,7 +29,7 @@ function App() {
       <div className="container">
           <div>
             <h2>Search Videos </h2>
-            {/* <SearchBar searchBarParent={searchBar}/> */}
+            <SearchBar />
           </div>
           <Routes>
             <Route
@@ -43,6 +43,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/video/:videoId" element={<VideoPage />} />
+            <Route path="/search" element={<SearchResultsPage />} /> 
             <Route 
               path="/addcomment" 
               element={

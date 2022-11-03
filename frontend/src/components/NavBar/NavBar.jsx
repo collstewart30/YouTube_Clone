@@ -12,9 +12,10 @@ const Navbar = () => {
       <ul>
         <li className="brand">
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-            <b>Welcome, {user.username}</b>
+            Home
           </Link>
         </li>
+        <li><b>Welcome, {user.username}</b></li>
         <li>
           {user ? (
             <button onClick={logoutUser}>Logout</button>
