@@ -12,7 +12,7 @@ import axios from "axios";
 
 const SearchBar = (props) => {
     
-    const defaultValues = { };
+    const defaultValues = { search: "" };
 
     // const [search, setSearch] = useState('');
     const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
@@ -21,8 +21,10 @@ const SearchBar = (props) => {
       );
 
     function onclick() {
-        console.log('search bar console log');
-        getSearchBarResults(formData)
+        console.log('search bar clicked');
+        let newSearch = {formData};
+        console.log(newSearch);
+        // getSearchBarResults(formData)
     }
 
 
@@ -38,18 +40,19 @@ const SearchBar = (props) => {
     
     return ( 
         <form onSubmit={handleSubmit}>
+            <label>Search Videos</label>
             <input 
                 type='text' 
                 // className='form-control' 
                 name="search"
-                value={formData}
+                value={formData.search}
                 onChange={handleInputChange}/>
             <Link to="/search"></Link>
             <button 
                 type='submit' 
                 className='btn btn-primary' 
                 style={{'marginTop':'1em'}}>
-                    Search Video
+                    Enter
                 </button>
         </form>
      );

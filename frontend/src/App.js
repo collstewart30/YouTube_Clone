@@ -28,8 +28,7 @@ function App() {
       <Navbar />
       <div className="container">
           <div>
-            <h2>Search Videos </h2>
-            <SearchBar />
+          <SearchBar />
           </div>
           <Routes>
             <Route
@@ -42,6 +41,7 @@ function App() {
             />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route exact path="/" element={<YouTubePage />} />
             <Route path="/video/:videoId" element={<VideoPage />} />
             <Route path="/search" element={<SearchResultsPage />} /> 
             <Route 
