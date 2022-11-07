@@ -41,7 +41,6 @@ function App() {
             />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route exact path="/" element={<YouTubePage />} />
             <Route path="/video/:videoId" element={<VideoPage />} />
             <Route path="/search" element={<SearchResultsPage />} /> 
             <Route 

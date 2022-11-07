@@ -33,7 +33,7 @@ const VideoPage = () => {
     
     const{videoId} = useParams();
 
-    const[likeVideo, setLikeVideo] = useState([])
+    const[likeVideoId, setLikeVideoId] = useState([])
     console.log(videoId)
 
     useEffect(() => {
@@ -42,7 +42,7 @@ const VideoPage = () => {
                 let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${videoId}&type=video&key=${KEY}`);
                 console.log('VideoPage - results from thumbnail click')
                 console.log(response.data.items)
-                setLikeVideo(response.data.items)
+                setLikeVideoId(response.data.items)
             } catch (error) {
                 console.log(error)
             }
@@ -54,6 +54,19 @@ const VideoPage = () => {
             <div>
                 <h1>{videoId}</h1>  
             </div>
+            {likeVideoId &&
+                likeVideoId.map((video) => (
+                <li key={video.id.videoId}>
+                    <Link to={`/video/${video.id.videoId}`} >
+                    <li><img id="ytplayer" type="text/html" width="640" height="360" 
+                    src={video.snippet.thumbnails.high.url}
+                    frameBorder="0"/>   
+                    </li>         
+                    <li>{video.snippet.title}</li>
+                    <li>{video.snippet.description}</li>
+                    </Link>
+                </li>
+        ))}
         </div>
     );
 };
@@ -61,8 +74,8 @@ const VideoPage = () => {
 export default VideoPage;
 
 // <h1>{likeVideo.snippet.title}</h1>
-// <iframe 
-// id="ytplayer" type="text/html" width="640" height="360"
-// src=(`https://www.youtube.com/embed/${videoId}?autoplay=1&origin=http://example.com`)
-// frameborder="0">
-// </iframe>
+                // <iframe 
+                // id="ytplayer" type="text/html" width="640" height="360"
+                // src=(`https://www.youtube.com/embed/${videoId}?autoplay=1&origin=http://example.com`)
+                // frameborder="0">
+                // </iframe>

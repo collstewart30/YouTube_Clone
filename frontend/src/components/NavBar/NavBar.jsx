@@ -14,9 +14,9 @@ const Navbar = () => {
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             Home
           </Link>
-        </li>
+        {/* </li>
         <li><b>Welcome, {user.username}</b></li>
-        <li>
+        <li> */}
           {user ? (
             <button onClick={logoutUser}>Logout</button>
           ) : (

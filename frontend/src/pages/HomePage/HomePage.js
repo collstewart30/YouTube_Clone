@@ -50,7 +50,7 @@ const HomePage = () => {
             </li>         
             <li>{video.snippet.title}</li>
             <li>{video.snippet.description}</li>
-          </Link>
+            </Link>
           </li>
         ))}
   </div>
