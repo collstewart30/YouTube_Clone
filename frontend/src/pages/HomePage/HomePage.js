@@ -23,11 +23,7 @@ const HomePage = () => {
 
  const getSearchResults = async (searchTerm="philadelphia eagles") => {
       try {
-        let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${KEY}&part=snippet&type=video&maxResults=5`, {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        });        
+        let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${KEY}&part=snippet&type=video&maxResults=5`, );        
         setVideoData(response.data.items);
         console.log("YouTube API request ran")
         console.log(response.data.items)
