@@ -13,8 +13,8 @@ const HomePage = () => {
   //TODO: Add an AddCars Page to add a car for a logged in user's garage
   const [user, token] = useAuth();
   const [videoData, setVideoData] = useState([]);
-  console.log(user);
-  console.log(token);
+  // console.log(user);
+  // console.log(token);
 
   useEffect(() => {
     getSearchResults();
@@ -49,7 +49,7 @@ const HomePage = () => {
             </Link>
           </li>
         ))}
-  </div>
+    </div>
   );
 };
 

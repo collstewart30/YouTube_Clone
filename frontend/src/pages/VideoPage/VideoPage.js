@@ -13,20 +13,6 @@ import {Link, useParams} from "react-router-dom";
 import axios from "axios";
 import { KEY } from "../../localKey";
 
-{/* <li key={video.id.videoId}>
-<li><img id="ytplayer" type="text/html" width="640" height="360" 
-src={video.snippet.thumbnails.high.url}
-frameborder="0"/>   
-</li> */}
-
-
-// {likeVideo &&
-//     likeVideo.map((video) => (         
-//         <li key={video.id.videoId}>
-//             {/* {video.snippet.title} */}
-//             {/* <li>{video.snippet.description}</li> */}
-//         </li>
-// ))}
 
 
 const VideoPage = () => {
@@ -34,48 +20,54 @@ const VideoPage = () => {
     const{videoId} = useParams();
 
     const[likeVideoId, setLikeVideoId] = useState([])
-    console.log(videoId)
+    // console.log(videoId)
 
     useEffect(() => {
-        const getRelatedVideos = async () => {        
-            try {
-                let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${videoId}&type=video&key=${KEY}`);
-                console.log('VideoPage - results from thumbnail click')
-                console.log(response.data.items)
-                setLikeVideoId(response.data.items)
-            } catch (error) {
-                console.log(error)
-            }
-        };   
         getRelatedVideos();
     }, [videoId]);
+
+    const getRelatedVideos = async () => {        
+        try {
+            let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${videoId}&type=video&key=${KEY}`);
+            console.log('VideoPage - results from thumbnail click')
+            console.log(response.data.items)
+            setLikeVideoId(response.data.items)
+        } catch (error) {
+            console.log(error)
+        }
+    }; 
+
     return (
-        <div className="container">
+        <div>
+            <h1>Related Videos</h1>
             <div>
-                <h1>{videoId}</h1>  
+                <iframe 
+                    id="ytplayer" type="text/html" width="640" height="360"
+                    src={`https://www.youtube.com/embed/${likeVideoId}?autoplay=1m`}
+                    frameborder="0">
+                </iframe>
             </div>
-            {likeVideoId &&
-                likeVideoId.map((video) => (
-                <li key={video.id.videoId}>
-                    <Link to={`/video/${video.id.videoId}`} >
-                    <li><img id="ytplayer" type="text/html" width="640" height="360" 
-                    src={video.snippet.thumbnails.high.url}
-                    frameBorder="0"/>   
-                    </li>         
-                    <li>{video.snippet.title}</li>
-                    <li>{video.snippet.description}</li>
-                    </Link>
-                </li>
-        ))}
         </div>
     );
 };
 
 export default VideoPage;
 
-// <h1>{likeVideo.snippet.title}</h1>
-                // <iframe 
-                // id="ytplayer" type="text/html" width="640" height="360"
-                // src=(`https://www.youtube.com/embed/${videoId}?autoplay=1&origin=http://example.com`)
-                // frameborder="0">
-                // </iframe>
+// FROM HOME PAGE
+// <div className="container">
+// <h1>Home Page for {user.username}!</h1>
+// {/* <Link to="/addcomment">Add Comment</Link> will want to link to video page from thumbnail */} 
+// {videoData &&
+//   videoData.map((video) => (
+//     <li key={video.id.videoId}>
+//       <Link to={`/video/${video.id.videoId}`} >
+//       <li><img id="ytplayer" type="text/html" width="640" height="360" 
+//         src={video.snippet.thumbnails.high.url}
+//         frameBorder="0"/>   
+//       </li>         
+//       <li>{video.snippet.title}</li>
+//       <li>{video.snippet.description}</li>
+//       </Link>
+//     </li>
+//   ))}
+// </div>
