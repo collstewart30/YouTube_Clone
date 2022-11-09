@@ -43,7 +43,7 @@ const VideoPage = () => {
             <div>
                 <iframe 
                     id="ytplayer" type="text/html" width="640" height="360"
-                    src={`https://www.youtube.com/embed/${likeVideoId}?autoplay=1m`}
+                    src={`https://www.youtube.com/embed/${videoId}?autoplay=1m`}
                     frameborder="0">
                 </iframe>
             </div>

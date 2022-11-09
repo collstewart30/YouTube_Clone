@@ -28,7 +28,7 @@ function App() {
       <Navbar />
       <div className="container">
           <div>
-          <SearchBar />
+          {/* <SearchBar /> */}
           </div>
           <Routes>
             <Route
@@ -42,7 +42,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/video/:videoId" element={<VideoPage />} />
-            <Route path="/search" element={<SearchResultsPage />} /> 
+            <Route path="/search/:searchTerm" element={<SearchResultsPage />} /> 
             <Route 
               path="/addcomment" 
               element={

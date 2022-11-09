@@ -6,6 +6,7 @@ import SearchResultsPage from "../SearchResultsPage/SearchResultsPage";
 import { Routes, Route } from "react-router-dom";
 import axios from "axios";
 import { KEY } from "../../localKey";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
@@ -35,6 +36,7 @@ const HomePage = () => {
   return (
     <div className="container">
       <h1>Home Page for {user.username}!</h1>
+      <SearchBar />
       {/* <Link to="/addcomment">Add Comment</Link> will want to link to video page from thumbnail */} 
       {videoData &&
         videoData.map((video) => (
