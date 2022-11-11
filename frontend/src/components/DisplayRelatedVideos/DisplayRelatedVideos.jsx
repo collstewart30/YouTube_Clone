@@ -1,8 +1,8 @@
 const DisplayRelatedVideos = ({ video }) => {
   return (
     <div>
-      <h1>RELATED VIDEOS HERE</h1>
       <li>
+        <li>{video.snippet.title}</li>
         <img
           id="ytplayer"
           type="text/html"
@@ -12,7 +12,6 @@ const DisplayRelatedVideos = ({ video }) => {
           frameBorder="0"
         />
       </li>
-      <li>{video.snippet.title}</li>
     </div>
   );
 };

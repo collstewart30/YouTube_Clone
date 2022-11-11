@@ -5,7 +5,7 @@
 // how can React Router Route be set up to pull this information from a URL param?
 
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { KEY } from "../../localKey";
 import DisplayRelatedVideos from "../../components/DisplayRelatedVideos/DisplayRelatedVideos";
@@ -35,7 +35,7 @@ const VideoPage = () => {
 
   return (
     <div className="container">
-      <h1>Video Title Here</h1>
+      {/* <h1>{videoId.snippet.title}</h1> */}
 
       <iframe
         id="ytplayer"

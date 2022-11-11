@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
 import SearchResultsPage from "../SearchResultsPage/SearchResultsPage";
-import { Routes, Route } from "react-router-dom";
 import axios from "axios";
 import { KEY } from "../../localKey";
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -34,14 +33,27 @@ const HomePage = () => {
     }
   };
 
+
+  // function searchBar(searchTerm){
+ 
+  //   let filteredSongs = songs.filter(function(song){
+  //       if(song.title.includes(searchTerm) || song.artist.includes(searchTerm) || song.album.includes(searchTerm) || song.release_date.includes(searchTerm) || song.genre.includes(searchTerm)){
+  //       return true
+  //       }
+  //     }
+  //   )
+  //     setSongs(filteredSongs)    
+  //  }searchBarParent={getSearchResults}
+
+
   return (
     <div className="container">
       <h1>Home Page for {user.username}!</h1>
       <SearchBar />
-      {/* <Link to="/addcomment">Add Comment</Link> will want to link to video page from thumbnail */}
       {videoData &&
         videoData.map((video) => (
           <li key={video.id.videoId}>
+            <SearchResultsPage searched={video}/>
             <Link to={`/video/${video.id.videoId}`}>
               <li>
                 <img
