@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { KEY } from "../../localKey";
 import DisplayRelatedVideos from "../../components/DisplayRelatedVideos/DisplayRelatedVideos";
+import AddCommentPage from "../AddCommentPage/AddCommentPage";
 
 const VideoPage = () => {
   const { videoId } = useParams();
@@ -45,6 +46,8 @@ const VideoPage = () => {
         src={`https://www.youtube.com/embed/${videoId}?autoplay=1m`}
         frameBorder="0"
       ></iframe>
+      <h4>COMMENTS</h4>
+      <AddCommentPage />
 
       {/* Related Video 1
                 {likeVideoId[0].snippet.title} */}

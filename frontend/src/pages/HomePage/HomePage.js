@@ -6,6 +6,7 @@ import SearchResultsPage from "../SearchResultsPage/SearchResultsPage";
 import axios from "axios";
 import { KEY } from "../../localKey";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import AddCommentPage from "../AddCommentPage/AddCommentPage";
 
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
@@ -55,6 +56,7 @@ const HomePage = () => {
               <li>{video.snippet.title}</li>
               <li>{video.snippet.description}</li>
             </Link>
+
           </li>
         ))}
     </div>
