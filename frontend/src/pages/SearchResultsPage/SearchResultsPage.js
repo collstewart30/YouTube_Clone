@@ -18,21 +18,21 @@ const SearchResultsPage = () => {
 
     useEffect(() => {
         console.log("now we're on the SearchResultsPage")
-        resultsSearchBar();
+        // resultsSearchBar();
       }, [formData]);
     
-      const resultsSearchBar = async (formData) => {
-        try {
-          let response = await axios.get(
-            `https://www.googleapis.com/youtube/v3/search?q=${formData}&key=${KEY}&part=snippet&type=video&maxResults=1`
-          );
-          setSearch(response.data.items);
-          console.log("Search results page YouTube API request");
-          console.log(response.data.items);
-        } catch (error) {
-          console.log(error.response.data);
-        }
-      };
+    //   const resultsSearchBar = async (formData) => {
+    //     try {
+    //       let response = await axios.get(
+    //         `https://www.googleapis.com/youtube/v3/search?q=${formData}&key=${KEY}&part=snippet&type=video&maxResults=1`
+    //       );
+    //       setSearch(response.data.items);
+    //       console.log("Search results page YouTube API request");
+    //       console.log(response.data.items);
+    //     } catch (error) {
+    //       console.log(error.response.data);
+    //     }
+    //   };
 
     return (
         <div className="container">
