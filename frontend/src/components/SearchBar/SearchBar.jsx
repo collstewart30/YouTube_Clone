@@ -1,38 +1,26 @@
-import useCustomForm from "../../hooks/useCustomForm";
-import { useNavigate } from "react-router-dom";
-
-
+import { useState } from "react";
 
 const SearchBar = (props) => {
-  const defaultValues = { search: "" };
-  const navigate = useNavigate();
+  const [search, setSearch] = useState("");
 
-  const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
-    defaultValues,
-    handleClick
-  );
-
-  function handleClick() {
-    console.log("search bar clicked");
-    console.log(formData)
-    props.searchBarParent(formData)
-    navigate(`/search/${formData}`)
+  function handleSearch(event) {
+    event.preventDefault();
+    console.log(`new search: ${search}`);
+    props.searchBarParent(search);
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSearch}>
       <label>Search Videos</label>
       <input
         type="text"
         name="search"
-        value={formData.search}
-        onChange={handleInputChange}
+        onChange={(event) => setSearch(event.target.value)}
       />
       <button
         type="submit"
         className="btn btn-primary"
         style={{ marginTop: "1em" }}
-        onClick={() => handleClick(formData)}
       >
         Enter
       </button>
