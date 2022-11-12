@@ -6,7 +6,6 @@ import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
-import AddCommentPage from "./pages/AddCommentPage/AddCommentPage";
 import VideoPage from "./pages/VideoPage/VideoPage";
 import SearchResultsPage from "./pages/SearchResultsPage/SearchResultsPage";
 
@@ -40,13 +39,6 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/video/:videoId" element={<VideoPage />} />
             <Route path="/search/:formData" element={<SearchResultsPage />} /> 
-            <Route 
-              path="/addcomment" 
-              element={
-                <PrivateRoute>
-                  <AddCommentPage />
-                </PrivateRoute>} 
-                />
           </Routes>
         </div>
       <Footer />

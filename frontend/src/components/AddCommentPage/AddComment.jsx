@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
-const AddCommentPage = (props) => {
+const AddComment = (props) => {
   const [user, token] = useAuth();
 
-  const [newComment, setNewComment] = useState('');
+  const [newComment, setNewComment] = useState("");
+
+  let videoId = props.videoId   
 
   let tempNewComment = {
     comment: newComment,
@@ -20,11 +22,11 @@ const AddCommentPage = (props) => {
   async function postNewComment() {
     try {
       let response = await axios.post(
-        "http://127.0.0.1:8000/api/comments/", 
+        `http://127.0.0.1:8000/api/comments/${videoId}`,
         tempNewComment,
-        {headers: {Authorization: "Bearer " + token,},}
-        );
-        console.log("New comment: ", response)
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log("New comment: ", response);
     } catch (error) {
       console.log(error);
     }
@@ -34,19 +36,16 @@ const AddCommentPage = (props) => {
     <div className="container">
       {/* <h2>{user.username}</h2> */}
       <form className="form" onSubmit={handleSubmit}>
-        <label>
-          text:{" "}
           <input
             type="text"
             name="text"
-            value={newComment} 
+            value={newComment}
             onChange={(event) => setNewComment(event.target.value)}
           />
-        </label>
-        <button type='submit'>Add Comment</button>
+        <button type="submit">Add Comment</button>
       </form>
     </div>
   );
 };
 
-export default AddCommentPage;
+export default AddComment;

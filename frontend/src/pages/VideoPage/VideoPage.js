@@ -9,7 +9,8 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { KEY } from "../../localKey";
 import DisplayRelatedVideos from "../../components/DisplayRelatedVideos/DisplayRelatedVideos";
-import AddCommentPage from "../AddCommentPage/AddCommentPage";
+import DisplayComments from "../../components/DisplayComments/DisplayComments";
+import AddComment from "../../components/AddCommentPage/AddComment";
 
 const VideoPage = () => {
   const { videoId } = useParams();
@@ -17,8 +18,11 @@ const VideoPage = () => {
   const [likeVideoId, setLikeVideoId] = useState([]);
   // console.log(videoId)
 
+  const [comments, setComments] = useState('');
+
   useEffect(() => {
-    getRelatedVideos();
+    getRelatedVideos();    
+    getAllComments();
   }, [videoId]);
 
   const getRelatedVideos = async () => {
@@ -34,6 +38,12 @@ const VideoPage = () => {
     }
   };
 
+
+  async function getAllComments(){
+    const responseGet = await axios.get(`http://127.0.0.1:8000/api/comments/all/${videoId}`);
+    console.log(responseGet.data);
+    setComments(responseGet.data)
+ }  
 
   return (
     <div className="container">
@@ -52,12 +62,15 @@ const VideoPage = () => {
       {/* Related Video 1
                 {likeVideoId[0].snippet.title} */}
 
+      <h4>COMMENTS</h4>
+      <AddComment addNewCommentParent={setComments} getAllComments={getAllComments} videoId={videoId}/>
       {likeVideoId.map((singleVideo) => (
         <DisplayRelatedVideos
           key={singleVideo.id.videoId}
           video={singleVideo}
-        />
-      ))}
+          />
+          ))}
+        {/* <DisplayComments parentDisplayComments={comments}/> */}
     </div>
   );
 };

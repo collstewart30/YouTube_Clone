@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { KEY } from "../../localKey";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import AddCommentPage from "../AddCommentPage/AddCommentPage";
-import DisplayComments from "../../components/DisplayComments/DisplayComments";
+
 
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
@@ -16,13 +15,10 @@ const HomePage = () => {
   const [videoData, setVideoData] = useState([]);
   // console.log(user);
   // console.log(token);
-  const [comments, setComments] = useState('');
-
 
 
   useEffect(() => {
     getSearchResults();
-    getAllComments();
   }, [token]);
 
   const getSearchResults = async (searchTerm = "philadelphia eagles") => {
@@ -38,11 +34,6 @@ const HomePage = () => {
     }
   };
 
-  async function getAllComments(){
-    const responseGet = await axios.get(`http://127.0.0.1:8000/api/comments/all/${videoId}`);
-    console.log(responseGet.data);
-    setComments(responseGet.data)
- }  
 
   return (
     <div className="container">
@@ -50,7 +41,7 @@ const HomePage = () => {
       <SearchBar searchBarParent={getSearchResults} />
       {videoData &&
         videoData.map((video) => (
-          <li key={video.id.videoId}>
+          <div key={video.id.videoId}>
             <Link to={`/video/${video.id.videoId}`}>
               <li>
                 <img
@@ -65,11 +56,8 @@ const HomePage = () => {
               <li>{video.snippet.title}</li>
               <li>{video.snippet.description}</li>
               {/* <h2>{user.username}</h2> */}
-              <h4>COMMENTS</h4>
-              <AddCommentPage addNewCommentParent={setComments} getAllComments={getAllComments}/>
-              <DisplayComments parentDisplayComments={comments}/>
             </Link>
-          </li>
+          </div>
         ))}
     </div>
   );
