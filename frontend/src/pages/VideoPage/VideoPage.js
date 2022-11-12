@@ -34,6 +34,7 @@ const VideoPage = () => {
     }
   };
 
+
   return (
     <div className="container">
       {/* <h1>{videoId.snippet.title}</h1> */}
@@ -46,8 +47,7 @@ const VideoPage = () => {
         src={`https://www.youtube.com/embed/${videoId}?autoplay=1m`}
         frameBorder="0"
       ></iframe>
-      <h4>COMMENTS</h4>
-      <AddCommentPage />
+
 
       {/* Related Video 1
                 {likeVideoId[0].snippet.title} */}

@@ -1,34 +1,30 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 import useAuth from "../../hooks/useAuth";
-import useCustomForm from "../../hooks/useCustomForm";
 
 const AddCommentPage = (props) => {
   const [user, token] = useAuth();
 
-  const [comment, setComment] = useState();
+  const [newComment, setNewComment] = useState('');
 
-    let newComment = { comment: comment };
+  let tempNewComment = {
+    comment: newComment,
+  };
 
-    function handleSubmit(event){
-        event.preventDefault();
-        postNewComment()
-    }
+  function handleSubmit(event) {
+    event.preventDefault();
+    postNewComment(tempNewComment);
+    props.getAllComments();
+  }
 
   async function postNewComment() {
     try {
       let response = await axios.post(
-        "http://127.0.0.1:8000/api/comments/",
-        formData,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
-      navigate("/");
+        "http://127.0.0.1:8000/api/comments/", 
+        tempNewComment,
+        {headers: {Authorization: "Bearer " + token,},}
+        );
+        console.log("New comment: ", response)
     } catch (error) {
       console.log(error);
     }
@@ -43,15 +39,12 @@ const AddCommentPage = (props) => {
           <input
             type="text"
             name="text"
-            value={formData.video_id}
-            onChange={handleInputChange}
+            value={newComment} 
+            onChange={(event) => setNewComment(event.target.value)}
           />
         </label>
-        <button>Add Comment</button>
+        <button type='submit'>Add Comment</button>
       </form>
-      {/* <iframe id="ytplayer" type="text/html" width="640" height="360"
-                src="https://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"
-                frameborder="0"></iframe> */}
     </div>
   );
 };

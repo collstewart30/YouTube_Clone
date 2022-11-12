@@ -2,11 +2,11 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
-import SearchResultsPage from "../SearchResultsPage/SearchResultsPage";
 import axios from "axios";
 import { KEY } from "../../localKey";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import AddCommentPage from "../AddCommentPage/AddCommentPage";
+import DisplayComments from "../../components/DisplayComments/DisplayComments";
 
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
@@ -16,9 +16,13 @@ const HomePage = () => {
   const [videoData, setVideoData] = useState([]);
   // console.log(user);
   // console.log(token);
+  const [comments, setComments] = useState('');
+
+
 
   useEffect(() => {
     getSearchResults();
+    getAllComments();
   }, [token]);
 
   const getSearchResults = async (searchTerm = "philadelphia eagles") => {
@@ -34,11 +38,16 @@ const HomePage = () => {
     }
   };
 
+  async function getAllComments(){
+    const responseGet = await axios.get(`http://127.0.0.1:8000/api/comments/all/${videoId}`);
+    console.log(responseGet.data);
+    setComments(responseGet.data)
+ }  
 
   return (
     <div className="container">
       <h1>Home Page for {user.username}!</h1>
-      <SearchBar searchBarParent={getSearchResults}/>
+      <SearchBar searchBarParent={getSearchResults} />
       {videoData &&
         videoData.map((video) => (
           <li key={video.id.videoId}>
@@ -55,8 +64,11 @@ const HomePage = () => {
               </li>
               <li>{video.snippet.title}</li>
               <li>{video.snippet.description}</li>
+              {/* <h2>{user.username}</h2> */}
+              <h4>COMMENTS</h4>
+              <AddCommentPage addNewCommentParent={setComments} getAllComments={getAllComments}/>
+              <DisplayComments parentDisplayComments={comments}/>
             </Link>
-
           </li>
         ))}
     </div>
