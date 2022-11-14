@@ -10,7 +10,7 @@ import axios from "axios";
 import { KEY } from "../../localKey";
 import DisplayRelatedVideos from "../../components/DisplayRelatedVideos/DisplayRelatedVideos";
 import DisplayComments from "../../components/DisplayComments/DisplayComments";
-import AddComment from "../../components/AddCommentPage/AddComment";
+import AddComment from "../../components/AddComment/AddComment";
 
 const VideoPage = () => {
   const { videoId } = useParams();
@@ -18,10 +18,10 @@ const VideoPage = () => {
   const [likeVideoId, setLikeVideoId] = useState([]);
   // console.log(videoId)
 
-  const [comments, setComments] = useState('');
+  const [comments, setComments] = useState("");
 
   useEffect(() => {
-    getRelatedVideos();    
+    getRelatedVideos();
     getAllComments();
   }, [videoId]);
 
@@ -38,39 +38,43 @@ const VideoPage = () => {
     }
   };
 
-
-  async function getAllComments(){
-    const responseGet = await axios.get(`http://127.0.0.1:8000/api/comments/all/${videoId}`);
+  async function getAllComments() {
+    const responseGet = await axios.get(
+      `http://127.0.0.1:8000/api/comments/all/${videoId}`
+    );
     console.log(responseGet.data);
-    setComments(responseGet.data)
- }  
+    setComments(responseGet.data);
+  }
 
   return (
     <div className="container">
-      {/* <h1>{videoId.snippet.title}</h1> */}
-
-      <iframe
-        id="ytplayer"
-        type="text/html"
-        width="640"
-        height="360"
-        src={`https://www.youtube.com/embed/${videoId}?autoplay=1m`}
-        frameBorder="0"
-      ></iframe>
-
-
-      {/* Related Video 1
+      <div>
+        <iframe
+          id="ytplayer"
+          type="text/html"
+          width="640"
+          height="360"
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=1m`}
+          frameBorder="0"
+        ></iframe>
+        {/* Related Video 1
                 {likeVideoId[0].snippet.title} */}
-
-      <h4>COMMENTS</h4>
-      <AddComment addNewCommentParent={setComments} getAllComments={getAllComments} videoId={videoId}/>
-      {likeVideoId.map((singleVideo) => (
-        <DisplayRelatedVideos
-          key={singleVideo.id.videoId}
-          video={singleVideo}
+        <h4 className='text-muted' style={{ margin: "1em"}}>COMMENTS</h4>
+        <AddComment
+          addNewCommentParent={setComments}
+          getAllComments={getAllComments}
+          videoId={videoId}
+        />
+      </div>
+      <div className="list-unstyled text-decoration-none" style={{ margin: "2em"}}>
+        {likeVideoId.map((singleVideo) => (
+          <DisplayRelatedVideos
+            key={singleVideo.id.videoId}
+            video={singleVideo}
           />
-          ))}
+        ))}
         {/* <DisplayComments parentDisplayComments={comments}/> */}
+      </div>
     </div>
   );
 };

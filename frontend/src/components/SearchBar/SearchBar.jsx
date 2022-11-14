@@ -10,8 +10,8 @@ const SearchBar = (props) => {
   }
 
   return (
-    <form onSubmit={handleSearch}>
-      <label>Search Videos</label>
+    <form onSubmit={handleSearch} className='form-grid'>
+      <label style={{ margin: "1em" }}>Search Videos</label>
       <input
         type="text"
         name="search"
@@ -19,8 +19,8 @@ const SearchBar = (props) => {
       />
       <button
         type="submit"
-        className="btn btn-primary"
-        style={{ marginTop: "1em" }}
+        className="button"
+        style={{ margin: "1em" }}
       >
         Enter
       </button>

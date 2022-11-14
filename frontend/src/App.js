@@ -25,7 +25,7 @@ function App() {
   return (
     <div>
       <Navbar />
-      <div className="container">
+      <div>
           <Routes>
             <Route
               path="/"

@@ -37,12 +37,13 @@ const HomePage = () => {
 
   return (
     <div className="container">
-      <h1>Home Page for {user.username}!</h1>
+      <h1 className='text-muted'>Welcome, {user.username}!</h1>
       <SearchBar searchBarParent={getSearchResults} />
       {videoData &&
         videoData.map((video) => (
-          <div key={video.id.videoId}>
+          <div key={video.id.videoId} style={{ margin: "2em"}} className="list-unstyled text-decoration-none">
             <Link to={`/video/${video.id.videoId}`}>
+              <li className="text-decoration-none" style={{ margin: "1em"}}>{video.snippet.title}</li>
               <li>
                 <img
                   id="ytplayer"
@@ -53,8 +54,7 @@ const HomePage = () => {
                   frameBorder="0"
                 />
               </li>
-              <li>{video.snippet.title}</li>
-              <li>{video.snippet.description}</li>
+              <li style={{ margin: "1em"}}>{video.snippet.description}</li>
               {/* <h2>{user.username}</h2> */}
             </Link>
           </div>

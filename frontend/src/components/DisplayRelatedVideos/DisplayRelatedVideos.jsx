@@ -2,7 +2,7 @@ const DisplayRelatedVideos = ({ video }) => {
   return (
     <div>
       <li>
-        <li>{video.snippet.title}</li>
+        <li style={{ margin: "1em"}}>{video.snippet.title}</li>
         <img
           id="ytplayer"
           type="text/html"

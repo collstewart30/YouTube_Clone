@@ -7,7 +7,7 @@ const AddComment = (props) => {
 
   const [newComment, setNewComment] = useState("");
 
-  let videoId = props.videoId   
+  let videoId = props.videoId;
 
   let tempNewComment = {
     comment: newComment,
@@ -34,15 +34,14 @@ const AddComment = (props) => {
 
   return (
     <div className="container">
-      {/* <h2>{user.username}</h2> */}
-      <form className="form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="text"
-            value={newComment}
-            onChange={(event) => setNewComment(event.target.value)}
-          />
-        <button type="submit">Add Comment</button>
+      <form className="form-group" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="text"
+          value={newComment}
+          onChange={(event) => setNewComment(event.target.value)}
+        />
+        <button className='button' type="submit" style={{ margin: "1em" }}>Add Comment</button>
       </form>
     </div>
   );

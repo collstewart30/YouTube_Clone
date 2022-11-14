@@ -14,9 +14,6 @@ const Navbar = () => {
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             Home
           </Link>
-        {/* </li>
-        <li><b>Welcome, {user.username}</b></li>
-        <li> */}
           {user ? (
             <button onClick={logoutUser}>Logout</button>
           ) : (
@@ -29,3 +26,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+// change Link to button to match style of login/out

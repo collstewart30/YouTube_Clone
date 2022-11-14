@@ -13,23 +13,23 @@ li {
   box-shadow: 4px 2px 5px gray;
   color: white;
   margin-bottom: 2rem;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 2rem;  
+  justify-content: right;
 }
 
 .navBar button {
   background: transparent;
-  border: 2px solid white;
   color: white;
   padding: 0.4rem 0.5rem;
 }
 
 .navBar button:hover {
-  background: white;
-  color: black;
+  /* background: white;
+  color: black; */
   cursor: pointer;
 }
 
 .brand {
-  cursor: pointer;
+  cursor: pointe;
   font-size: 2rem;
 }
