@@ -10,10 +10,8 @@ const Navbar = () => {
   return (
     <div className="navBar">
       <ul className="nav">
-        <li className="link">
-          <Link to="/" style={{ textDecoration: "none", color: "white", padding: "0.4rem 0.5rem" }}>
-            HOME
-          </Link>
+        <li>
+          <button onClick={() => navigate("/")}>HOME</button>
         </li>
         <li>
           {user ? (
