@@ -31,8 +31,7 @@ const VideoPage = () => {
       let response = await axios.get(
         `https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${videoId}&key=${KEY}&part=snippet&type=video&maxResults=5`
       );
-      console.log("VideoPage - results from thumbnail click");
-      console.log(response.data.items);
+      console.log("VideoPage data",response.data.items);
       setLikeVideoId(response.data.items);
     } catch (error) {
       console.log(error);
@@ -70,7 +69,7 @@ const VideoPage = () => {
             <AddComment
               // addNewCommentParent={setComments}
               videoId={videoId}
-              getAllComments={getAllComments}
+              // getAllComments={getAllComments}
             />
             <DisplayComments parentDisplayComments={comments}/>
           </div>

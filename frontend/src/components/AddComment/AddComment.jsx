@@ -12,9 +12,9 @@ const AddComment = (props) => {
   let videoId = props.videoId;
 
   let tempNewComment = {
-    text: newComment,
-    video_id: videoId,
     user: user.id,
+    video_id: videoId,
+    text: newComment,
     likes: likes,
     dislikes: dislikes,
   };
@@ -25,7 +25,7 @@ const AddComment = (props) => {
     // props.getAllComments();
   }
 
-  async function postNewComment() {
+  async function postNewComment(tempNewComment) {
     try {
       let response = await axios.post(
         `http://127.0.0.1:8000/api/comments/add/`,
@@ -40,7 +40,7 @@ const AddComment = (props) => {
 
   return (
     <div className="container">
-      <form className="form-group">
+      <form className="form-group" onSubmit={handleSubmit}>
         <input
           type="text"
           name="text"
@@ -50,8 +50,7 @@ const AddComment = (props) => {
         />
         <button
           className="button"
-          type="submit"
-          onSubmit={handleSubmit}
+          type="submit"          
           style={{ margin: "1em" }}
         >
           Add Comment
