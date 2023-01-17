@@ -20,9 +20,9 @@ def get_all_comments(request, video_id):
 @api_view(['POST'])  # post comments by video id
 @permission_classes([IsAuthenticated])
 def add_comment(request):
-    comments = get_object_or_404(Comment, user_id=request.user.id)
-    serializer = CommentSerializer(comments, data=request.data)
-    serializer.is_valid(raise_exception=True)
-    serializer.save()   
-    return Response(status=status.HTTP_204_NO_CONTENT)
+    serializer = CommentSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save(user_id=request.user.id)   
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

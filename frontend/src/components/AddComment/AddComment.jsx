@@ -11,32 +11,32 @@ const AddComment = (props) => {
 
   let videoId = props.videoId;
 
-  
-  async function postNewComment(post) {
+  let tempNewComment = {
+    text: newComment,
+    video_id: videoId,
+    user: user.id,
+    likes: likes,
+    dislikes: dislikes,
+  };
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    postNewComment(tempNewComment);
+    // props.getAllComments();
+  }
+
+  async function postNewComment() {
     try {
       let response = await axios.post(
         `http://127.0.0.1:8000/api/comments/add/`,
-        post,
+        tempNewComment,
         { headers: { Authorization: "Bearer " + token } }
-        );
-        console.log("New comment: ", response);
-      } catch (error) {
-        console.log(error);
-      }
+      );
+      console.log("New comment: ", response);
+    } catch (error) {
+      console.log(error);
     }
-
-    function handleSubmit(event) {
-      event.preventDefault();
-      let tempNewComment = {
-        text: newComment,
-        videoId: videoId,
-        user: user.id,
-        likes: likes,
-        dislikes: dislikes,
-      };
-      postNewComment(tempNewComment);
-      // props.getAllComments();
-    }
+  }
 
   return (
     <div className="container">
