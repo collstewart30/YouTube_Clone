@@ -6,8 +6,8 @@ const DisplayRelatedVideos = ({ video }) => {
         <img
           id="ytplayer"
           type="text/html"
-          width="640"
-          height="360"
+          width="320"
+          height="180"
           src={video.snippet.thumbnails.high.url}
           frameBorder="0"
         />

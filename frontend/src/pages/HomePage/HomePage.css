@@ -2,11 +2,13 @@
     margin: 0 auto;
     overflow: auto;
     text-align: center;
+    width: 80%;
   }
 
 
   .grid-container{
     display: grid;
+    font-size: small;
     list-style-type: none;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: .25em;

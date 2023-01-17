@@ -49,10 +49,11 @@ const HomePage = () => {
                 <img
                   id="ytplayer"
                   type="text/html"
-                  width="640"
-                  height="360"
+                  width="500"
+                  height="250"
                   src={video.snippet.thumbnails.high.url}
                   frameBorder="0"
+                  border="1px solid #555"
                 />
               </li>
               {/* <li style={{ margin: "1em" }}>{video.snippet.description}</li> */}

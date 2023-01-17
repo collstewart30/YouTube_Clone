@@ -1,0 +1,8 @@
+.video-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: .25em;
+    text-align: center;
+    margin: 1em;
+    border: 1px solid black;
+  }

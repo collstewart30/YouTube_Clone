@@ -11,6 +11,8 @@ import { KEY } from "../../localKey";
 import DisplayRelatedVideos from "../../components/DisplayRelatedVideos/DisplayRelatedVideos";
 import DisplayComments from "../../components/DisplayComments/DisplayComments";
 import AddComment from "../../components/AddComment/AddComment";
+// import "../../App.css"
+import "./VideoPage.css";
 
 const VideoPage = () => {
   const { videoId } = useParams();
@@ -49,29 +51,39 @@ const VideoPage = () => {
   return (
     <div className="container">
       <div>
-        <iframe
-          id="ytplayer"
-          type="text/html"
-          width="640"
-          height="360"
-          src={`https://www.youtube.com/embed/${videoId}?autoplay=1m`}
-          frameBorder="0"
-        ></iframe>
+        <div>
+          <iframe
+            id="ytplayer"
+            type="text/html"
+            width="500"
+            height="250"
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=1m`}
+            frameBorder="0"
+          ></iframe>
+        </div>
         {/* Related Video 1
                 {likeVideoId[0].snippet.title} */}
-        <h4 className='text-muted' style={{ margin: "1em"}}>COMMENTS</h4>
-        <AddComment
-          addNewCommentParent={setComments}
-          getAllComments={getAllComments}
-          videoId={videoId}
-        />
+        <div className="container">
+          <h4 className="text-muted" style={{ margin: "1em" }}>
+            COMMENTS
+          </h4>
+          <div>
+            <AddComment
+              addNewCommentParent={setComments}
+              getAllComments={getAllComments}
+              videoId={videoId}
+            />
+          </div>
+        </div>
       </div>
-      <div className="list-unstyled text-decoration-none" style={{ margin: "2em"}}>
+      <div className="container">
         {likeVideoId.map((singleVideo) => (
-          <DisplayRelatedVideos
-            key={singleVideo.id.videoId}
-            video={singleVideo}
-          />
+          <li className="video-container">
+            <DisplayRelatedVideos
+              key={singleVideo.id.videoId}
+              video={singleVideo}
+            />
+          </li>
         ))}
         {/* <DisplayComments parentDisplayComments={comments}/> */}
       </div>

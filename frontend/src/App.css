@@ -36,9 +36,12 @@ button:hover {
 .container {
   margin: 0 auto;
   max-width: 600px;
-  overflow: auto;
+  list-style-type: none;
+  /* overflow: auto; */
   text-align: center;
 }
+
+
 
 .form {
   align-items: center;
