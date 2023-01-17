@@ -10,7 +10,9 @@ const AddComment = (props) => {
   let videoId = props.videoId;
 
   let tempNewComment = {
-    comment: newComment,
+    text: newComment,
+    videoId: videoId,
+    user: user.id,
   };
 
   function handleSubmit(event) {
@@ -22,7 +24,7 @@ const AddComment = (props) => {
   async function postNewComment() {
     try {
       let response = await axios.post(
-        `http://127.0.0.1:8000/api/comments/${videoId}`,
+        `http://127.0.0.1:8000/api/comments/`,
         tempNewComment,
         { headers: { Authorization: "Bearer " + token } }
       );

@@ -5,17 +5,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { KEY } from "../../localKey";
 import SearchBar from "../../components/SearchBar/SearchBar";
-
+import "./HomePage.css";
 
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
   // The "token" value is the JWT token that you will send in the header of any request requiring authentication
-  //TODO: Add an AddCars Page to add a car for a logged in user's garage
   const [user, token] = useAuth();
   const [videoData, setVideoData] = useState([]);
-  // console.log(user);
-  // console.log(token);
-
 
   useEffect(() => {
     getSearchResults();
@@ -34,16 +30,21 @@ const HomePage = () => {
     }
   };
 
-
   return (
     <div className="container">
-      <h1 className='text-muted'>Welcome, {user.username}!</h1>
+      <h1 className="text-muted">Welcome, {user.first_name}!</h1>
       <SearchBar searchBarParent={getSearchResults} />
       {videoData &&
         videoData.map((video) => (
-          <div key={video.id.videoId} style={{ margin: "2em"}} className="list-unstyled text-decoration-none">
+          <div
+            key={video.id.videoId}
+            style={{ border: ".75px solid black", margin: ".5em" }}
+            className="grid-container"
+          >
             <Link to={`/video/${video.id.videoId}`}>
-              <li className="text-decoration-none" style={{ margin: "1em"}}>{video.snippet.title}</li>
+              <li>
+                {video.snippet.title}
+              </li>
               <li>
                 <img
                   id="ytplayer"
@@ -54,8 +55,7 @@ const HomePage = () => {
                   frameBorder="0"
                 />
               </li>
-              <li style={{ margin: "1em"}}>{video.snippet.description}</li>
-              {/* <h2>{user.username}</h2> */}
+              {/* <li style={{ margin: "1em" }}>{video.snippet.description}</li> */}
             </Link>
           </div>
         ))}

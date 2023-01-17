@@ -9,13 +9,15 @@ const Navbar = () => {
   const navigate = useNavigate();
   return (
     <div className="navBar">
-      <ul>
-        <li className="brand">
-          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-            Home
+      <ul className="nav">
+        <li className="link">
+          <Link to="/" style={{ textDecoration: "none", color: "white", padding: "0.4rem 0.5rem" }}>
+            HOME
           </Link>
+        </li>
+        <li>
           {user ? (
-            <button onClick={logoutUser}>Logout</button>
+            <button onClick={logoutUser}>LOGOUT</button>
           ) : (
             <button onClick={() => navigate("/login")}>Login</button>
           )}

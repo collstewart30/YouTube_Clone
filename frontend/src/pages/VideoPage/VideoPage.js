@@ -40,7 +40,7 @@ const VideoPage = () => {
 
   async function getAllComments() {
     const responseGet = await axios.get(
-      `http://127.0.0.1:8000/api/comments/all/${videoId}`
+      `http://127.0.0.1:8000/api/comments/${videoId}/`
     );
     console.log(responseGet.data);
     setComments(responseGet.data);
