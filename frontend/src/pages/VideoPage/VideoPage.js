@@ -20,11 +20,10 @@ const VideoPage = () => {
   const [likeVideoId, setLikeVideoId] = useState([]);
   // console.log(videoId)
 
-  const [comments, setComments] = useState("");
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     getRelatedVideos();
-    getAllComments();
   }, [videoId]);
 
   const getRelatedVideos = async () => {
@@ -42,7 +41,7 @@ const VideoPage = () => {
 
   async function getAllComments() {
     const responseGet = await axios.get(
-      `http://127.0.0.1:8000/api/comments/${videoId}/`
+      `http://127.0.0.1:8000/api/comments/all/${videoId}/`
     );
     console.log(responseGet.data);
     setComments(responseGet.data);
@@ -64,28 +63,25 @@ const VideoPage = () => {
         {/* Related Video 1
                 {likeVideoId[0].snippet.title} */}
         <div className="container">
-          <h4 className="text-muted" style={{ margin: "1em" }}>
+          {/* <h4 className="text-muted" style={{ margin: "1em" }}>
             COMMENTS
-          </h4>
+          </h4> */}
           <div>
             <AddComment
-              addNewCommentParent={setComments}
-              getAllComments={getAllComments}
+              // addNewCommentParent={setComments}
               videoId={videoId}
+              getAllComments={getAllComments}
             />
+            <DisplayComments parentDisplayComments={comments}/>
           </div>
         </div>
       </div>
       <div className="container">
         {likeVideoId.map((singleVideo) => (
-          <li className="video-container">
-            <DisplayRelatedVideos
-              key={singleVideo.id.videoId}
-              video={singleVideo}
-            />
-          </li>
+          <div key={singleVideo.id.videoId} className="video-container">
+            <DisplayRelatedVideos video={singleVideo} />
+          </div>
         ))}
-        {/* <DisplayComments parentDisplayComments={comments}/> */}
       </div>
     </div>
   );

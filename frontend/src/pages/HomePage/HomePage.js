@@ -42,10 +42,10 @@ const HomePage = () => {
             className="grid-container"
           >
             <Link to={`/video/${video.id.videoId}`}>
-              <li>
+              <p>
                 {video.snippet.title}
-              </li>
-              <li>
+              </p>
+              <p>
                 <img
                   id="ytplayer"
                   type="text/html"
@@ -55,7 +55,7 @@ const HomePage = () => {
                   frameBorder="0"
                   border="1px solid #555"
                 />
-              </li>
+              </p>
               {/* <li style={{ margin: "1em" }}>{video.snippet.description}</li> */}
             </Link>
           </div>

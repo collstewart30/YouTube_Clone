@@ -13,5 +13,3 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = ['id','video_id','text','likes','dislikes', 'user_id']
         depth = 1
-
-        # depth = 1 WITHOUT specifying user_id will pull ALL info for user

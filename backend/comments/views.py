@@ -11,19 +11,18 @@ from django.shortcuts import get_object_or_404
 @api_view(['GET'])  # get comments by video id
 @permission_classes([AllowAny])
 def get_all_comments(request, video_id):
-    video_comments = Comment.objects.filter(video_id=video_id)
-    serializer = CommentSerializer(video_comments, many=True)
+    comments = Comment.objects.filter(video_id=video_id)
+    serializer = CommentSerializer(comments, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-@api_view(['GET', 'POST'])     
+
+@api_view(['POST'])  # post comments by video id
 @permission_classes([IsAuthenticated])
-def user_comments(request):
-   # print('User ',f"{request.user.id} {request.user.email} {request.user.username}")
-    
-    if request.method == 'POST':
-        serializer = CommentSerializer(data=request.data)        
-        serializer.is_valid(raise_exception=True)
-        serializer.save(user=request.user)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+def add_comment(request):
+    comments = get_object_or_404(Comment, user_id=request.user.id)
+    serializer = CommentSerializer(comments, data=request.data)
+    serializer.is_valid(raise_exception=True)
+    serializer.save()   
+    return Response(status=status.HTTP_204_NO_CONTENT)
 
