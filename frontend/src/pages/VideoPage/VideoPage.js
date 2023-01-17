@@ -25,7 +25,7 @@ const VideoPage = () => {
   useEffect(() => {
     getRelatedVideos();
     getAllComments();
-  }, [videoId]);
+  }, []);
 
   const getRelatedVideos = async () => {
     try {
@@ -70,7 +70,7 @@ const VideoPage = () => {
             <AddComment
               // addNewCommentParent={setComments}
               videoId={videoId}
-              // getAllComments={getAllComments}
+              getAllComments={getAllComments}
             />
             <DisplayComments parentDisplayComments={comments}/>
           </div>

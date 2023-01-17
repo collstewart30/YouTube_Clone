@@ -22,17 +22,17 @@ const AddComment = (props) => {
   function handleSubmit(event) {
     event.preventDefault();
     postNewComment(tempNewComment);
-    // props.getAllComments();
   }
-
+  
   async function postNewComment(tempNewComment) {
     try {
       let response = await axios.post(
         `http://127.0.0.1:8000/api/comments/add/`,
         tempNewComment,
         { headers: { Authorization: "Bearer " + token } }
-      );
-      console.log("New comment: ", response);
+        );
+        console.log("New comment: ", response);
+        props.getAllComments();
     } catch (error) {
       console.log(error);
     }
