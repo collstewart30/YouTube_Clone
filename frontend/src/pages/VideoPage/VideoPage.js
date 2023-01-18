@@ -25,7 +25,7 @@ const VideoPage = () => {
   useEffect(() => {
     getRelatedVideos();
     getAllComments();
-  }, []);
+  }, [videoId]);
 
   const getRelatedVideos = async () => {
     try {
